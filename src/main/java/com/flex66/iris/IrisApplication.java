@@ -3,6 +3,7 @@ package com.flex66.iris;
 import com.flex66.iris.db.dao.CommentsDao;
 import com.flex66.iris.db.domainobject.Comment;
 import com.flex66.iris.exception.IllegalArgumentExceptionMapper;
+import com.flex66.iris.exception.RuntimeExceptionMapper;
 import com.flex66.iris.resources.CommentDelegate;
 import com.flex66.iris.resources.CommentResource;
 import io.dropwizard.Application;
@@ -50,6 +51,7 @@ public class IrisApplication extends Application<IrisConfiguration> {
                     new CommentsDao(hibernateBundle.getSessionFactory()))));
         
         environment.jersey().register(new IllegalArgumentExceptionMapper());
+        environment.jersey().register(new RuntimeExceptionMapper());
     }
 
 }
